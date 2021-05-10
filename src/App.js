@@ -9,10 +9,12 @@ import { Component } from 'react';
 import HomePage from './components/pages/HomePage/HomePage';
 import Registration from './components/pages/Registration/Registration';
 import Login from './components/pages/LoginPage/Login';
+import Recovery from './components/pages/Recovery/Recovery';
 
 // layouts
 import MainLayout from './Layout/MainLayout';
 import HomePageLayout from './Layout/HomePageLayout';
+
 
 const initialState = {
   currentUser: null
@@ -74,6 +76,11 @@ class App extends Component {
               <Login />
             </MainLayout>
           )} />
+          <Route path="/recovery" render={() => (
+            <MainLayout>
+              <Recovery/>
+            </MainLayout>
+          )}/>
         </Switch>
       </div>
     );

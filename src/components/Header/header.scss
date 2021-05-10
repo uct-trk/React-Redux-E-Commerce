@@ -23,15 +23,24 @@
             top: 20px;
             right: 80px;
             
+            li{
+                display: inline-block;
+                margin-right: 30px;
+
+                &:last-child{
+                    margin-right: 0;
+                }
+            }
+            
 
             ul, li{
-                margin: 0;
                 padding: 0;
 
                 a{
                     font-size: 25px;
                     color: rgb(33, 164, 207);
                     text-transform: uppercase;
+                    cursor: pointer;
                 }
             }
         }

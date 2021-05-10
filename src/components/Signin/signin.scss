@@ -1,28 +1,42 @@
-.signin{
-    display: block;
-    width: 100%;
-    max-width: 40rem;
-    border: 1px solid rgb(33, 164, 207);
-    margin: 4rem auto 6rem;
-    border-radius: .5rem;
+.signin {
+  display: block;
+  width: 100%;
+  max-width: 40rem;
+  border: 1px solid rgb(33, 164, 207);
+  margin: 4rem auto 6rem;
+  border-radius: 0.5rem;
 
-    
-    .wrap{
-        padding: 1rem;
+  .wrap {
+    padding: 1rem;
 
-        h2{
-            font-size: 2.2rem;
-            line-height: 1;
-            font-weight: 400;
-            text-transform: uppercase;
-            display: block;
-            width: 100%;
-            text-align: center;
-            color: rgb(33, 164, 207);
-        }
-
-        .socialSignin{
-            margin: 3rem auto 0;
-        }
+    h2 {
+      font-size: 2.2rem;
+      line-height: 1;
+      font-weight: 400;
+      text-transform: uppercase;
+      display: block;
+      width: 100%;
+      margin: 0 auto 2rem;
+      text-align: center;
+      color: rgb(33, 164, 207);
     }
+
+    .socialSignin {
+      margin: 0.5rem auto 0;
+
+      .google-sign {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background: rgba(255, 0, 0, 0.808);
+        color: white;
+        font-weight: 500;
+        text-transform: uppercase;
+        margin: 0 auto;
+        cursor: pointer;
+        border: 0;
+        outline: 0;
+      }
+    }
+  }
 }

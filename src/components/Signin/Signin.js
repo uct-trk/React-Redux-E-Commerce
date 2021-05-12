@@ -1,33 +1,33 @@
 import React, {useState, useEffect} from "react";
 import Button from "../Forms/Button/Button";
 import { useDispatch, useSelector } from 'react-redux'
-import {signInUser, signInWithGoogle, resetAllAuthForms} from './../../redux/actions/userActions'
+import {emailSignInStart, googleSignInStart} from './../../redux/actions/userActions'
 import "./signin.scss";
 
 import Form from "../Forms/FormInput/Form";
 import AuthWrapper from "../AuthWrapper/AuthWrapper";
-import { Link, withRouter } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const mapState = ({user}) => ({
-  signInSuccess: user.signInSuccess
+  currentUser: user.currentUser
 })
 
 const Signin = (props) => {
 
-    const {signInSuccess} = useSelector(mapState)
+    const {currentUser} = useSelector(mapState)
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
 
     
     useEffect(() => {
-      if (signInSuccess){
+      if (currentUser){
         resetForm()
-        dispatch(resetAllAuthForms())
-        props.history.push("/")
+        history.push("/")
       }
-    }, [signInSuccess])
+    }, [currentUser])
 
     // clear password and email inputs - sifre ve email bölümünü temizler
     const resetForm = () => {
@@ -37,12 +37,12 @@ const Signin = (props) => {
 
    const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(signInUser({email, password}))  
+    dispatch(emailSignInStart({email, password}))  
   };
 
   //open with google account - google ile oturum acmak için
   const handleGoogleSignIn = () => {
-    dispatch(signInWithGoogle());
+    dispatch(googleSignInStart());
   }
 
     const configAuthWrapper = {
@@ -88,4 +88,4 @@ const Signin = (props) => {
   }
 
 
-export default withRouter(Signin);
+export default Signin;

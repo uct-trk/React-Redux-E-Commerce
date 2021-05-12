@@ -23,6 +23,8 @@ import Admin from './components/pages/Admin.js/Admin';
 // layouts
 import MainLayout from './Layout/MainLayout';
 import HomePageLayout from './Layout/HomePageLayout';
+import AdminLayout from './Layout/AdminLayout'
+import DashboardLayout from './Layout/DashboardLayout'
 
 
 
@@ -64,16 +66,16 @@ const App = () => {
         )} />
         <Route path="/dashboard" render={() => (
           <WithAuth>
-          <MainLayout>
+          <DashboardLayout>
             <Dashboard />
-          </MainLayout>
+          </DashboardLayout>
           </WithAuth>
         )}/>
         <Route path="/admin" render={() => (
           <WithAdminAuth>
-          <MainLayout>
+          <AdminLayout>
             <Admin />
-          </MainLayout>
+          </AdminLayout>
           </WithAdminAuth>
         )} />
       </Switch>

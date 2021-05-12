@@ -3,7 +3,7 @@ import { auth, handleUserProfile,getCurrentUser, GoogleProvider } from '../../fi
 
 import userTypes from '../actions/types'
 import { signInSuccess, signOutUserSucces, resetPasswordSuccess,userError } from '../actions/userActions'
-import { handleResetPasswordAPI } from '../userHelpers';
+import { handleResetPasswordAPI } from '../helpers/userHelpers';
 
 export function* getSnapshotFromUserAuth(user, additionalData={}) {
     try {

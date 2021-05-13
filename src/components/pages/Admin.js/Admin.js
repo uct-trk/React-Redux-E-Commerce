@@ -6,14 +6,17 @@ import './admin.scss'
 import Modal from '../../Modal/Modal'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProductStart, fetchProductsStart, deleteProductStart } from '../../../redux/Products/productsActions'
+import LoadMore from '../../LoadMore/LoadMore'
 
-const mapState = ({productsData}) => ({
+
+const mapState = ({ productsData }) => ({
     products: productsData.products
 })
 
 const Admin = (props) => {
 
-    const {products} = useSelector(mapState)
+    const { products } = useSelector(mapState)
+    const { data, queryDoc, isLastPage } = products //helper fonksiyondan geliyor
     const dispatch = useDispatch()
 
     const [hideModal, setHideModal] = useState(true);
@@ -22,12 +25,13 @@ const Admin = (props) => {
     const [productThumbnail, setProductThumbnail] = useState('');
     const [productPrice, setProductPrice] = useState(0);
 
+
     // bir defa render etmesi için boş oluşturduk
     useEffect(() => {
         dispatch(
             fetchProductsStart()
         )
-    },[])
+    }, [])
 
     const toggleModal = () => setHideModal(!hideModal)
 
@@ -55,6 +59,19 @@ const Admin = (props) => {
             })
         )
         resetForm()
+    }
+
+    const handleLoadMore = () => {
+        dispatch(
+            fetchProductsStart({
+                startAfterDoc: queryDoc,
+                persistProducts: data
+            })
+        )
+    }
+
+    const configLoadMore = {
+        onLoadMoreEvt: handleLoadMore
     }
 
     return (
@@ -129,7 +146,7 @@ const Admin = (props) => {
                             <td>
                                 <table className="results" border="0" cellPadding="10" cellSpacing="0">
                                     <tbody>
-                                        {products.map((product, index) => {
+                                        {(Array.isArray(data) && data.length > 1) && data.map((product, index) => {
                                             const {
                                                 productName,
                                                 productThumbnail,
@@ -155,6 +172,26 @@ const Admin = (props) => {
                                                 </tr>
                                             )
                                         })}
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table border="0" cellPadding="10" cellSpacing="0">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                {!isLastPage && (
+                                                    <LoadMore {...configLoadMore} />
+                                                )}
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </td>

@@ -1,12 +1,13 @@
 import productsTypes from './productsTypes'
 
-export const addProductStart = productData => ({
+export const addProductStart = (productData) => ({
     type: productsTypes.ADD_NEW_PRODUCT_START,
     payload: productData
 })
 
-export const fetchProductsStart = () => ({
-    type: productsTypes.FETCH_PRODUCTS_START
+export const fetchProductsStart = (filters={}) => ({
+    type: productsTypes.FETCH_PRODUCTS_START,
+    payload: filters
 })
 
 export const setProducts = (products) => ({

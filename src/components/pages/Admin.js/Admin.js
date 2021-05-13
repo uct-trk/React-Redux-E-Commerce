@@ -127,7 +127,7 @@ const Admin = (props) => {
                         </tr>
                         <tr>
                             <td>
-                                <table border="0" cellPadding="10" cellSpacing="0">
+                                <table className="results" border="0" cellPadding="10" cellSpacing="0">
                                     <tbody>
                                         {products.map((product, index) => {
                                             const {
@@ -139,7 +139,7 @@ const Admin = (props) => {
                                             return (
                                                 <tr key={index}>
                                                     <td>
-                                                        <img width="250" height="250" src={productThumbnail} className="thumb" />
+                                                        <img src={productThumbnail} className="thumb" />
                                                     </td>
                                                     <td>
                                                         {productName}
@@ -147,7 +147,7 @@ const Admin = (props) => {
                                                     <td>
                                                         {productPrice}₺
                                                     </td>
-                                                    <td style={{marginLeft:"25px"}}>
+                                                    <td>
                                                         <Button onClick={() => dispatch(deleteProductStart(documentID))}>
                                                             Delete
                                                         </Button>

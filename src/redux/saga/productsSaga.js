@@ -62,7 +62,7 @@ export function* deleteProduct({payload}){
 }
 
 export function* onDeleteProductStart(){
-    yield takeLatest(productsTypes.DELETE_PRODUCT_START,deleteProduct)
+    yield takeLatest(productsTypes.DELETE_PRODUCT_START, deleteProduct)
 }
 
 export default function* productsSagas(){

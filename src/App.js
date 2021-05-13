@@ -19,6 +19,7 @@ import Login from './components/pages/LoginPage/Login';
 import Recovery from './components/pages/Recovery/Recovery';
 import Dashboard from './components/pages/Dashboard/Dashboard'
 import Admin from './components/pages/Admin.js/Admin';
+import Search from './components/pages/Search/Search';
 
 // layouts
 import MainLayout from './Layout/MainLayout';
@@ -48,6 +49,11 @@ const App = () => {
             <HomePage />
           </HomePageLayout>
         )} />
+        <Route path="/search" render={() => (
+          <MainLayout>
+            <Search/>
+          </MainLayout>
+        )}/>
         <Route path="/registration" render={() => (
           <MainLayout>
             <Registration />

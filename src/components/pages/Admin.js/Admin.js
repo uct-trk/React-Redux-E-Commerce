@@ -7,6 +7,7 @@ import Modal from '../../Modal/Modal'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProductStart, fetchProductsStart, deleteProductStart } from '../../../redux/Products/productsActions'
 import LoadMore from '../../LoadMore/LoadMore'
+import CKEditor from 'ckeditor4-react'
 
 
 const mapState = ({ productsData }) => ({
@@ -24,6 +25,7 @@ const Admin = (props) => {
     const [productName, setProductName] = useState('');
     const [productThumbnail, setProductThumbnail] = useState('');
     const [productPrice, setProductPrice] = useState(0);
+    const [productDesc, setProductDesc] = useState("")
 
 
     // bir defa render etmesi için boş oluşturduk
@@ -46,6 +48,7 @@ const Admin = (props) => {
         setProductName("")
         setProductThumbnail("")
         setProductPrice(0)
+        setProductDesc("")
     }
 
     const handleSubmit = (e) => {
@@ -55,7 +58,8 @@ const Admin = (props) => {
                 productCategory,
                 productName,
                 productThumbnail,
-                productPrice
+                productPrice,
+                productDesc
             })
         )
         resetForm()
@@ -124,6 +128,10 @@ const Admin = (props) => {
                             step="0.01"
                             value={productPrice}
                             handleChange={e => setProductPrice(e.target.value)} />
+
+                        <CKEditor
+                            onChange={e => setProductDesc(e.editor.getData())}
+                        />
 
 
                         <Button type="submit">

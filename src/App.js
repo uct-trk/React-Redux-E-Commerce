@@ -20,6 +20,7 @@ import Recovery from './components/pages/Recovery/Recovery';
 import Dashboard from './components/pages/Dashboard/Dashboard'
 import Admin from './components/pages/Admin.js/Admin';
 import Search from './components/pages/Search/Search';
+import ProductDetails from './components/pages/ProductDetails/ProductDetails';
 
 // layouts
 import MainLayout from './Layout/MainLayout';
@@ -57,6 +58,11 @@ const App = () => {
         <Route path="/search/:filterType" render={() => (
           <MainLayout>
             <Search/>
+          </MainLayout>
+        )}/>
+        <Route path="/product/:productID" render={() => (
+          <MainLayout>
+            <ProductDetails/>
           </MainLayout>
         )}/>
         <Route path="/registration" render={() => (

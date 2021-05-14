@@ -21,6 +21,7 @@ import Dashboard from './components/pages/Dashboard/Dashboard'
 import Admin from './components/pages/Admin.js/Admin';
 import Search from './components/pages/Search/Search';
 import ProductDetails from './components/pages/ProductDetails/ProductDetails';
+import Cart from './components/pages/Cart/Cart';
 
 // layouts
 import MainLayout from './Layout/MainLayout';
@@ -63,6 +64,11 @@ const App = () => {
         <Route path="/product/:productID" render={() => (
           <MainLayout>
             <ProductDetails/>
+          </MainLayout>
+        )}/>
+        <Route path="/cart" render={() => (
+          <MainLayout>
+            <Cart/>
           </MainLayout>
         )}/>
         <Route path="/registration" render={() => (

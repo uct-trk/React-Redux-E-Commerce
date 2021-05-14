@@ -12,7 +12,7 @@ const mapState = (state) => ({
     totalNumCartItems: selectCartItemsCount(state) //reselect
 })
 
-const Header = (props) => {
+const Header = () => {
 
     const { currentUser, totalNumCartItems } = useSelector(mapState);
 
@@ -31,7 +31,7 @@ const Header = (props) => {
                 </div>
 
                 <nav>
-                    <ul style={{marginRight:"90px"}}>
+                    <ul style={{ marginRight: "90px" }}>
                         <li>
                             <Link to="/">
                                 Home
@@ -48,9 +48,8 @@ const Header = (props) => {
                 <div className="callToActions">
                     <ul>
                         <li className="cart">
-                            <Link>
-                            {totalNumCartItems === 0 ? null : (<span>Your Cart({totalNumCartItems})</span>)}
-                                
+                            <Link to="/cart">
+                                {totalNumCartItems === 0 ? null : (<span>Your Cart({totalNumCartItems})</span>)}
                             </Link>
                         </li>
 
@@ -58,7 +57,7 @@ const Header = (props) => {
 
                         {
                             currentUser && (
-                                
+
                                 <ul>
                                     <li>
                                         <Link to="/dashboard">
@@ -71,7 +70,7 @@ const Header = (props) => {
                                         </Link>
                                     </li>
                                 </ul>
-                               
+
                             )
                         }
                         {

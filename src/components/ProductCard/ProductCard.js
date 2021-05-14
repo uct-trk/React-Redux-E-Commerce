@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProductStart, setProduct } from '../../redux/Products/productsActions'
 import Button from '../Forms/Button/Button'
+import { addProduct } from '../../redux/Cart/cartActions'
 
 
 const mapState = state => ({
@@ -35,6 +36,11 @@ const ProductCard = ({}) => {
         }
     }, [])
 
+    const handleAddToCart = (product) => {
+        if(!product) return
+        dispatch(addProduct(product))
+    }
+
     const configAddToCartBtn = {
         type: "button"
     }
@@ -63,7 +69,7 @@ const ProductCard = ({}) => {
                     </li>
                     <li>
                         <div className="addToCart">
-                            <Button>
+                            <Button {...configAddToCartBtn} onClick={() => handleAddToCart(product)}>
                                 Add To Cart
                             </Button>
                         </div>

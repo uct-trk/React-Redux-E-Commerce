@@ -54,6 +54,10 @@
       top: 20px;
       right: 80px;
 
+      ul{
+        display: flex;
+      }
+
       li {
         display: inline-block;
         margin-right: 30px;

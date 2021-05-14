@@ -1,22 +1,26 @@
 import React from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import './header.scss'
 import logo from '../../asserts/LOGO.svg'
 import { Link } from 'react-router-dom'
 import { signOutUserStart } from '../../redux/actions/userActions'
+import { selectCartItemsCount } from '../../redux/Cart/cartSelector'
 
-const mapState = ({user}) => ({
-    currentUser: user.currentUser
+
+const mapState = (state) => ({
+    currentUser: state.user.currentUser,
+    totalNumCartItems: selectCartItemsCount(state) //reselect
 })
 
 const Header = (props) => {
 
-    const { currentUser } = useSelector(mapState);
+    const { currentUser, totalNumCartItems } = useSelector(mapState);
 
     const dispatch = useDispatch()
     const signOut = () => {
         dispatch(signOutUserStart())
     }
+
     return (
         <header className="header">
             <div className="wrap">
@@ -27,7 +31,7 @@ const Header = (props) => {
                 </div>
 
                 <nav>
-                    <ul>
+                    <ul style={{marginRight:"90px"}}>
                         <li>
                             <Link to="/">
                                 Home
@@ -42,41 +46,55 @@ const Header = (props) => {
                 </nav>
 
                 <div className="callToActions">
-                    {/* login oldugumuz durumda logout yazısı görülecek conditional rendering */}
+                    <ul>
+                        <li className="cart">
+                            <Link>
+                            {totalNumCartItems === 0 ? null : (<span>Your Cart({totalNumCartItems})</span>)}
+                                
+                            </Link>
+                        </li>
 
-                    {
-                        currentUser && (
-                            <ul>
-                                <li>
-                                    <Link to="/dashboard">
-                                        My Account
+                        {/* login oldugumuz durumda logout yazısı görülecek conditional rendering */}
+
+                        {
+                            currentUser && (
+                                
+                                <ul>
+                                    <li>
+                                        <Link to="/dashboard">
+                                            My Account
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link style={{ cursor: "pointer" }} onClick={() => signOut()}>
+                                            Log Out
+                                        </Link>
+                                    </li>
+                                </ul>
+                               
+                            )
+                        }
+                        {
+                            !currentUser && (
+                                <ul>
+
+                                    <li>
+                                        <Link to="/registration">
+                                            Register
                                     </Link>
-                                </li>
-                                <li>
-                                    <a style={{cursor:"pointer"}} onClick={() => signOut()}>
-                                        Log Out
-                                    </a>
-                                </li>
-                            </ul>
-                        )
-                    }
-                    {
-                        !currentUser && (
-                            <ul>
-        
-                                <li>
-                                    <Link to="/registration">
-                                        Register
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/login">
-                                        Login
-                                    </Link>
-                                </li>
-                            </ul>
-                        )
-                    }
+                                    </li>
+                                    <li>
+                                        <Link to="/login">
+                                            Login
+                                        </Link>
+                                    </li>
+                                </ul>
+                            )
+                        }
+                    </ul>
+
+
+
 
                 </div>
             </div>
